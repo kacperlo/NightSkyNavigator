@@ -199,33 +199,10 @@ var config = {
 // Initialize the Celestial map
 Celestial.display(config);
 
-// Function to handle click events on celestial objects
-function celestialBodyClick(d) {
-	console.log(d); // Logs the data for the clicked celestial body
-	if (d.type === 'planet') {
-		console.log(d.properties.name); // Logs the name of the planet
-	}
-}
+// const selection = f.selectAll('.mw'); // select all circle elements, replace 'circle' with the appropriate selector for your objects
+// .on('click', function (d, i) {
+// 	console.log(d); // log the data bound to the clicked element
+// });
 
-// After Celestial is loaded, add click event listeners to the planets
-Celestial.container
-	.selectAll('.celestial-planet')
-	.on('click', celestialBodyClick);
-
-Celestial.container.selectAll('.planet').on('click', function (d) {
-	celestialBodyClick(d);
-});
-
-console.log(Celestial);
-Celestial.addCallback((e) => {
-	console.log('callback');
-	console.log(e);
-});
-
-const dragged = (event, d) =>
-	circle
-		.raise()
-		.attr('cx', (d.x = event.x))
-		.attr('cy', (d.y = event.y));
-const ended = () => circle.classed('dragging', false);
-event.on('drag', dragged).on('end', ended);
+const selection = d3.select('container').selectAll('.mw');
+console.log(selection);
