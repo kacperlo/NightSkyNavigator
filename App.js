@@ -194,15 +194,35 @@ var config = {
 		//Show day sky as a gradient, if location is set and map projection is hemispheric
 		show: false,
 	},
+	click: function (d) {
+		console.log('aa');
+		if (d && d.type === 'planet') {
+			console.log('Clicked on: ' + d.properties.name);
+		}
+	},
 };
 
 // Initialize the Celestial map
+Celestial.addCallback(() => {
+	const a = d3
+		.selectAll('.planet')
+		.append('circle')
+		.attr('cx', 100)
+		.attr('cy', 100)
+		.attr('r', 50)
+		.style('fill', 'blue');
+
+	console.log('a', a);
+});
+
+d3.select('#app')
+	.selectAll('p')
+	.data(['a', 'b', 'c'])
+	.enter()
+	.append('p')
+	.text((t) => t)
+	.on('mouseover', console.log);
+
 Celestial.display(config);
 
-// const selection = f.selectAll('.mw'); // select all circle elements, replace 'circle' with the appropriate selector for your objects
-// .on('click', function (d, i) {
-// 	console.log(d); // log the data bound to the clicked element
-// });
-
-const selection = d3.select('container').selectAll('.mw');
-console.log(selection);
+console.log('d3', d3);
